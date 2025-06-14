@@ -4,6 +4,7 @@ import { PDFViewer, Document, Page, Text, View, StyleSheet } from "@react-pdf/re
 import SecondDocument from "./SecondDocument";
 import ThirdDocument from "./ThirdDocument";
 import { useEffect, useState, useRef } from "react";
+import { BlobProvider } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
   page: { padding: 30, fontSize: 12 },
@@ -142,17 +143,39 @@ export default function ResumeViewer({ data }) {
     // let [template, setTemplate] = useState("template-1")
     // setTemplate(localStorage.getItem("template"));
     let template = localStorage.getItem("template");
-    const count = useRef(0);
-  useEffect(() => {
-    count.current++;
-  }, [data]);
+//     const count = useRef(0);
+//   useEffect(() => {
+//     count.current++;
+//   }, [data]);
+
+  let DocumentComponent =
+    template === 'template-2'
+      ? SecondDocument
+      : template === 'template-3'
+      ? ThirdDocument
+      : ResumeDocument;
   return (
-    <div className="h-full">
-      <PDFViewer style={{ width: "100%", height: "100%" }} key={count.current}>
+    <div className="h-full w-full flex">
+      {/* <PDFViewer className="w-full h-full" style={{ width: "100%", height: "100%" }} key={count.current}>
         {template=='template-1' && <ResumeDocument data={data} />}
         {template=='template-2' && <SecondDocument data={data} />}
         {template=='template-3' && <ThirdDocument data={data} />}
-      </PDFViewer>
+      </PDFViewer> */}
+      <BlobProvider className="h-full" document={<DocumentComponent data={data} />}>
+        {({ url, loading }) =>
+          loading ? (
+            <div className="text-center w-full h-full flex items-center justify-center">Loading...</div>
+          ) : (
+            <div className="w-full h-screen flex items-center justify-center">
+  <iframe
+    src={url}
+    className="w-[75%] md:w-full h-full border-none"
+    title="Resume PDF Preview"
+  />
+</div>
+          )
+        }
+      </BlobProvider>
     </div>
   );
 }

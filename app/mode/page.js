@@ -30,7 +30,7 @@ function page() {
     
   return (
     <div className="flex justify-center items-center h-screen">
-        <Card className="w-120">
+        <Card className="w-80 md:w-120">
             <CardContent className='grid grid-flow-col grid-cols-2fr-1fr-2fr'>
               <div className="justify-center">
                 <h2 className="text-xl font-bold mb-4">Upload old resume:</h2>

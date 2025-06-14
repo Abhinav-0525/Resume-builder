@@ -36,11 +36,12 @@ function Page() {
         comTwo:"",
     })
   return (
-    <div className='grid h-screen grid-flow-col grid-cols-2'>
-        <div className='overflow-y-auto'>
+    <div className='grid w-screen overflow-hidden grid-cols-1 md:grid-cols-2'>
+        <div className='h-screen overflow-y-auto'>
         <ResumeForm data={data} setData={setData}/>
         </div>
-        <ResumeViewer data={data}/>
+        <div className='h-full overflow-hidden'>
+        <ResumeViewer data={data}/></div>
     </div>
   )
 }

@@ -29,7 +29,7 @@ export default function Home() {
       <div>
         <h4 className="text-center pb-2 text-lg font-semibold">Pick a template:</h4>
       </div>
-      <div className="flex justify-center items-center mt-5 gap-10">
+      <div className="flex flex-wrap justify-center items-center mt-5 mb-7 gap-10">
           <Card className="w-65 gap-0 p-2">
             <CardContent className="p-0 h-80">
               <Image src="/template-1.png" width={200} height={200} alt="img" className="w-full h-auto object-cover"></Image>
