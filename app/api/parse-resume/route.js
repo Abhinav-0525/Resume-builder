@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-
+//Connecting with Affinda API, not in use right now
 export async function POST(req) {
   const formData = await req.formData();
   const file = formData.get("file");
@@ -10,7 +10,6 @@ export async function POST(req) {
 
   const affindaForm = new FormData();
   affindaForm.append("file", file);
-//   Optional: specify workspace
   affindaForm.append("workspace", "HQTBgfjN");
 
   const response = await fetch("https://api.affinda.com/v2/documents", {

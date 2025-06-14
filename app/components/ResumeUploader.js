@@ -1,5 +1,5 @@
 "use client";
-
+//UI Component for uploading pdf to Affinda API, not in use right now
 import { useState } from "react";
 
 export default function ResumeUploader() {

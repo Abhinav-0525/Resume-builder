@@ -1,14 +1,14 @@
 "use client"
 import { useState } from 'react'
 import ResumeForm from '../components/ResumeForm'
-import ResumeViewer from '../components/ResumeViewer'
+//import ResumeViewer from '../components/ResumeViewer'
 import dynamic from "next/dynamic";
 
-function page() {
-
-    const ResumeViewer = dynamic(() => import("../components/ResumeViewer"), {
-    ssr: false,
+const ResumeViewer = dynamic(() => import("../components/ResumeViewer"), {
+        ssr: false,
     });
+
+function Page() {
 
     let [data, setData] = useState({
         name:"",
@@ -45,4 +45,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

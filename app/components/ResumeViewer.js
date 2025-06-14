@@ -1,7 +1,9 @@
 "use client";
 
 import { PDFViewer, Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
-import { useEffect, useState } from "react";
+import SecondDocument from "./SecondDocument";
+import ThirdDocument from "./ThirdDocument";
+import { useEffect, useState, useRef } from "react";
 
 const styles = StyleSheet.create({
   page: { padding: 30, fontSize: 12 },
@@ -16,6 +18,7 @@ const styles = StyleSheet.create({
 function ResumeDocument({data}) {
     let tskillList = data.tskills.trim().split(/\s+/);
     let sskillList = data.sskills.trim().split(/\s+/);
+    
   return (
     <Document>
       <Page style={styles.page}>
@@ -136,10 +139,19 @@ function ResumeDocument({data}) {
 }
 
 export default function ResumeViewer({ data }) {
+    // let [template, setTemplate] = useState("template-1")
+    // setTemplate(localStorage.getItem("template"));
+    let template = localStorage.getItem("template");
+    const count = useRef(0);
+  useEffect(() => {
+    count.current++;
+  }, [data]);
   return (
     <div className="h-full">
-      <PDFViewer style={{ width: "100%", height: "100%" }}>
-        <ResumeDocument data={data} />
+      <PDFViewer style={{ width: "100%", height: "100%" }} key={count.current}>
+        {template=='template-1' && <ResumeDocument data={data} />}
+        {template=='template-2' && <SecondDocument data={data} />}
+        {template=='template-3' && <ThirdDocument data={data} />}
       </PDFViewer>
     </div>
   );
