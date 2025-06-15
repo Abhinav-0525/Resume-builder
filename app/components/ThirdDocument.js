@@ -36,40 +36,47 @@ export default function ThirdDocument({ data }) {
         {(data.collegeOne || data.collegeTwo) && (
           <View style={styles.section}>
             <Text style={styles.heading}>Education</Text>
+            {data.collegeOne!==""&&
             <View style={{display:'flex', flexDirection:'row'}}>
                 <Text style={styles.bullet}>{data.collegeOne}</Text>
                 <Text> : - {data.courseOne}</Text>
-            </View>
+            </View>}
+            {data.collegeTwo!==""&&
             <View style={{display:'flex', flexDirection:'row'}}>
                 <Text style={styles.bullet}>{data.collegeTwo}</Text>
                 <Text> : - {data.courseTwo}</Text>
-            </View>
+            </View>}
           </View>
         )}
 
         {(data.titleOne || data.titleTwo) && (
           <View style={styles.section}>
             <Text style={styles.heading}>Projects</Text>
+            {data.titleOne!==""&&<>
             <Text style={styles.bullet}>{data.titleOne}</Text>
-            <Text style={styles.text}>• {data.descOne}</Text>
+            <Text style={styles.text}>• {data.descOne}</Text></>}
+            {data.titleTwo!==""&&<>
             <Text style={styles.bullet}>{data.titleTwo}</Text>
-            <Text style={styles.text}>• {data.descTwo}</Text>
+            <Text style={styles.text}>• {data.descTwo}</Text></>}
+            {data.titleThree!==""&&<>
             <Text style={styles.bullet}>{data.titleThree}</Text>
-            <Text style={styles.text}>• {data.descThree}</Text>
+            <Text style={styles.text}>• {data.descThree}</Text></>}
           </View>
         )}
 
         {(data.comOne || data.comTwo) && (
           <View style={styles.section}>
             <Text style={styles.heading}>Experience</Text>
+            {data.comOne!==""&&<>
             <Text style={styles.bullet}>{data.comOne}</Text>
-            <Text style={styles.text}>• {data.accOne}</Text>
+            <Text style={styles.text}>• {data.accOne}</Text></>}
+            {data.comTwo!==""&&<>
             <Text style={styles.bullet}>{data.comTwo}</Text>
-            <Text style={styles.text}>• {data.accTwo}</Text>
+            <Text style={styles.text}>• {data.accTwo}</Text></>}
           </View>
         )}
 
-        {Array.isArray(tskillList) && tskillList.length > 0 && (
+        {data.tskills!=="" && (
           <View style={styles.section}>
             <Text style={styles.heading}>Technical Skills</Text>
             <View style={{flexDirection:"row", flexWrap:"wrap"}}>
@@ -83,7 +90,7 @@ export default function ThirdDocument({ data }) {
           </View>
         )}
 
-        {sskillList.length > 0 && (
+        {data.sskills!=="" && (
           <View style={styles.section}>
             <Text style={styles.heading}>Soft Skills</Text>
             <View style={{flexDirection:"row", flexWrap:"wrap"}}>

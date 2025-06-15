@@ -41,14 +41,16 @@ function ResumeDocument({data}) {
         {(data.collegeOne!=="" || data.collegeTwo!=="" )&& 
             <View>
                 <Text style={styles.heading}>Education</Text>
+                {data.collegeOne!==""&&
                 <View style={{marginBottom: 5}}>
                     <Text style={{fontSize:12, fontWeight: 'bold'}}>{data.collegeOne}</Text>
                     <Text >{data.courseOne}</Text>
-                </View>
+                </View>}
+                {data.collegeTwo!==""&&
                 <View>
                     <Text style={{fontSize:12, fontWeight: 'bold'}}>{data.collegeTwo}</Text>
                     <Text >{data.courseTwo}</Text>
-                </View>
+                </View>}
             </View>}
 
         {(data.comOne!=="" || data.comTwo!=="" )&& 
@@ -74,18 +76,21 @@ function ResumeDocument({data}) {
         {(data.titleOne!=="" || data.titleTwo!=="" )&& 
             <View>
                 <Text style={styles.heading}>Projects</Text>
+                 {data.titleOne!==""&&
                 <View style={{marginBottom: 5}}>
                     <Text style={{fontSize:12, fontWeight: 'bold'}}>{data.titleOne}</Text>
                     <Text >{data.descOne}</Text>
-                </View>
+                </View>}
+                {data.titleTwo!==""&&
                 <View style={{marginBottom: 5}}>
                     <Text style={{fontSize:12, fontWeight: 'bold'}}>{data.titleTwo}</Text>
                     <Text >{data.descTwo}</Text>
-                </View>
+                </View>}
+                {data.titleThree!==""&&
                 <View style={{marginBottom: 5}}>
                     <Text style={{fontSize:12, fontWeight: 'bold'}}>{data.titleThree}</Text>
                     <Text >{data.descThree}</Text>
-                </View>
+                </View>}
             </View>}
 
         {data.tskills!=="" && <View>
@@ -143,25 +148,25 @@ export default function ResumeViewer({ data }) {
     // let [template, setTemplate] = useState("template-1")
     // setTemplate(localStorage.getItem("template"));
     let template = localStorage.getItem("template");
-//     const count = useRef(0);
-//   useEffect(() => {
-//     count.current++;
-//   }, [data]);
+    const count = useRef(0);
+  useEffect(() => {
+    count.current++;
+  }, [data]);
 
-  let DocumentComponent =
-    template === 'template-2'
-      ? SecondDocument
-      : template === 'template-3'
-      ? ThirdDocument
-      : ResumeDocument;
+//   let DocumentComponent =
+//     template === 'template-2'
+//       ? SecondDocument
+//       : template === 'template-3'
+//       ? ThirdDocument
+//       : ResumeDocument;
   return (
     <div className="h-full w-full flex">
-      {/* <PDFViewer className="w-full h-full" style={{ width: "100%", height: "100%" }} key={count.current}>
+      <PDFViewer className="w-full h-screen overflow-hidden" style={{ width: "100%", height: "100%" }} key={count.current}>
         {template=='template-1' && <ResumeDocument data={data} />}
         {template=='template-2' && <SecondDocument data={data} />}
         {template=='template-3' && <ThirdDocument data={data} />}
-      </PDFViewer> */}
-      <BlobProvider className="h-full" document={<DocumentComponent data={data} />}>
+      </PDFViewer>
+      {/* <BlobProvider className="h-full" document={<DocumentComponent data={data} />}>
         {({ url, loading }) =>
           loading ? (
             <div className="text-center w-full h-full flex items-center justify-center">Loading...</div>
@@ -175,7 +180,7 @@ export default function ResumeViewer({ data }) {
 </div>
           )
         }
-      </BlobProvider>
+      </BlobProvider> */}
     </div>
   );
 }

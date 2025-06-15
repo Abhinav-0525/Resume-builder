@@ -24,7 +24,7 @@ export default function SecondDocument({ data }) {
           <Text style={{marginBottom:5}}>{data.email}</Text>
           <Text>{data.phone}</Text>
 
-          {tskillList.length > 0 && (
+          {data.tskills!=="" && (
             <View>
               <Text style={styles.heading}>Technical Skills</Text>
               {tskillList.map((skill, index) => (
@@ -36,7 +36,7 @@ export default function SecondDocument({ data }) {
             </View>
           )}
 
-          {sskillList.length > 0 && (
+          {data.sskills!=="" && (
             <View>
               <Text style={styles.heading}>Soft Skills</Text>
               {sskillList.map((skill) => (
@@ -55,25 +55,30 @@ export default function SecondDocument({ data }) {
 
           {(data.collegeOne || data.collegeTwo) && ( <View>
               <Text style={styles.heading}>Education</Text>
+              {data.collegeOne!==""&&
               <View style={{display:'flex', flexDirection:'row'}}>
                 <Text style={styles.title}>{data.collegeOne}</Text>
                 <Text style={styles.bullet}>: - {data.courseOne}</Text>
-              </View>
+              </View>}
+              {data.collegeTwo!==""&&
               <View style={{display:'flex', flexDirection:'row'}}>
                 <Text style={styles.title}>{data.collegeTwo}</Text>
                 <Text style={styles.bullet}>: - {data.courseTwo}</Text>
-              </View>
+              </View>}
               </View>
           )}
 
           {(data.titleOne|| data.titleTwo) && ( <View>
               <Text style={styles.heading}>Projects</Text>
+              {data.titleOne!==""&&<>
               <Text style={styles.title}>{data.titleOne}</Text>
-              <Text style={styles.item}>• {data.descOne}</Text>
+              <Text style={styles.item}>• {data.descOne}</Text></>}
+              {data.titleTwo!==""&&<>
               <Text style={styles.title}>{data.titleTwo}</Text>
-              <Text style={styles.item}>• {data.descTwo}</Text>
+              <Text style={styles.item}>• {data.descTwo}</Text></>}
+              {data.titleThree!==""&&<>
               <Text style={styles.title}>{data.titleThree}</Text>
-              <Text style={styles.item}>• {data.descThree}</Text>
+              <Text style={styles.item}>• {data.descThree}</Text></>}
                 </View>)}
 
           {(data.comOne || data.comTwo) && (<View>
